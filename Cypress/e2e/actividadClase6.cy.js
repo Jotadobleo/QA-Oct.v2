@@ -26,5 +26,7 @@ describe('Formulario de Registro', () => {
 
   it('Registro fallido por contraseña inválida', () => {
     cy.regPassDudosa()
+    // Facu como me hizo renegar esta cosa (el git y el push, y el merge y 37 errores)
   })
+  
 })
