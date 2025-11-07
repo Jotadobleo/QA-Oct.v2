@@ -4,8 +4,8 @@ describe('Formulario de Registro', () => {
     cy.visit('https://ticketazo.com.ar/auth/registerUser') 
   })
 
-  
-  it('Completa todos los campos y presiona Registrar', () => {
+
+  it('Completa todos los campos y presiona Registrar (código base)', () => {
     cy.registroDeUsuario()
   })
 
@@ -22,5 +22,9 @@ describe('Formulario de Registro', () => {
 
   it('Registro exitoso y listo para ingresar', () => {
     cy.regRightPath()
+  })
+
+  it('Registro fallido por contraseña inválida', () => {
+    cy.regPassDudosa()
   })
 })

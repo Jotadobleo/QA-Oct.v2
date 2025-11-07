@@ -182,5 +182,72 @@ function generarTelefonoRandom() {
     cy.log('Enviar formulario')
     cy.get('[data-cy="btn-registrarse"]').click().wait(2000)
     cy.url().should('eq', 'https://ticketazo.com.ar/auth/login')
+
+})
+
+Cypress.Commands.add('regPassDudosa',()=>{
+function generarEmailRandom() {
+  const tiempoActual = Date.now();
+  return `test${tiempoActual}@gmail.com`;
+}
+
+function generarDNIRandom() {
+  const dni = Math.floor(Math.random() * 90000000) + 10000000;
+  return dni.toString();
+}
+
+function generarTelefonoRandom() {
+  const numeroTelefono = Math.floor(Math.random() * 9000000000) + 1000000000;
+  return numeroTelefono.toString();
+}
+
+function generarCadenaAleatoria() {
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let resultado = '';
+  for (let i = 0; i < 8; i++) {
+    resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+  }
+  return resultado;
+}
+
+    const emailRandom = generarEmailRandom();
+    const telefonoRandom = generarTelefonoRandom();
+    const dniRandom = generarDNIRandom();
+    const passDudosa = generarCadenaAleatoria();
+    cy.log(emailRandom)
+    cy.log(telefonoRandom)
+    cy.log(dniRandom)
+    cy.log(passDudosa)
+    cy.log('Ingresando nombres, apellidos, celular y dni')
+    cy.get('[data-cy="input-nombres"]').clear().type('Juan')
+    cy.get('[data-cy="input-apellido"]').clear().type('Pérez')
+    cy.get('[data-cy="input-telefono"]').clear().type(telefonoRandom)
+    cy.get('[data-cy="input-dni"]').clear().type(dniRandom)
+
+    cy.log('Seleccionar provincia y localidad')
+    cy.get('[data-cy="select-provincia"]').clear().type('Córdoba')
+    cy.get('ul > li > span').contains('Córdoba').click()
+    cy.get('[data-cy="select-localidad"]').clear().type('Córdoba')
+    cy.get('ul > li > span').contains('Córdoba').click()
+
+
+    cy.log('Ingresando fecha de nacimiento')
+    cy.get('[data-cy="input-fecha-nacimiento"] [data-type="day"]').clear().type('15')
+    cy.get('[data-cy="input-fecha-nacimiento"] [data-type="month"]').clear().type('08')
+    cy.get('[data-cy="input-fecha-nacimiento"] [data-type="year"]').clear().type('1995')
+
+
+    cy.log('Ingresando mail y confirmación')
+    cy.get('[data-cy="input-email"]').clear().type(emailRandom)
+    cy.get('[data-cy="input-confirmar-email"]').clear().type(emailRandom)
+
+    cy.log('Ingresando contraseña y confirmación')
+    cy.get('[data-cy="input-password"]').clear().type(passDudosa)
+    cy.get('[data-cy="input-repetir-password"]').clear().type(passDudosa)
+
+
+    cy.log('Enviar formulario')
+    cy.get('[data-cy="btn-registrarse"]').click().wait(2000)
+    cy.get('p').contains('La contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos.').should('be.visible')
     
 })
