@@ -1,0 +1,14 @@
+{
+  "nombres": "Mike Michael",
+  "apellido": "Myers",
+  "provincia": "Córdoba",
+  "localidad": "Santa Rosa de Calamuchita",
+  "fechaNacimiento": {
+    "day": "17",
+    "month": "01",
+    "year": "1994"
+  },
+  "email": "sikerius47@gmail.com",
+  "password": "Test1234!"
+
+}
